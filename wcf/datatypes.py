@@ -117,7 +117,7 @@ class MultiByteInt31(object):
         """
         v = 0
         # tmp = ''
-        for pos in range(4):
+        for pos in range(5):
             b = fp.read(1)
             # tmp += b
             value = struct.unpack(b'<B', b)[0]
@@ -125,6 +125,8 @@ class MultiByteInt31(object):
             if not value & 0x80:
                 break
         # print ('%s => 0x%X' % (repr(tmp), v))
+        if v > 2147483647:
+            raise ValueError('Greater than 2147483647 / 0x07FFFFFFF')
 
         return cls(v)
 
