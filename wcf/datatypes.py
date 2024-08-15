@@ -63,7 +63,7 @@ class MultiByteInt31(object):
         value_b = (self.value >> 7) & 0x7F
         value_c = (self.value >> 14) & 0x7F
         value_d = (self.value >> 21) & 0x7F
-        value_e = (self.value >> 28) & 0x03
+        value_e = (self.value >> 28) & 0x07
         if value_e != 0:
             ret = struct.pack(b'<BBBBB',
                               value_a | 0x80,
