@@ -9,8 +9,9 @@ import sys
 from codecs import decode
 
 sys.path.append('..')
-    
+
 from wcf.records import *
+from wcf import datatypes
 
 test_bin = decode(
 "56020b0173040b0161065608440a1e0082993a687474703a2f2f646f6373"
@@ -51,6 +52,7 @@ class Suite(unittest.TestSuite):
         self.addTest(doctest.DocTestSuite(elements))
         self.addTest(doctest.DocTestSuite(attributes))
         self.addTest(doctest.DocTestSuite(text))
+        self.addTest(doctest.DocTestSuite(datatypes))
         self.addTest(TransformTest())
 
 if __name__ == '__main__':

@@ -56,6 +56,8 @@ class MultiByteInt31(object):
         b'\\xff\\xff\\xff\\x7f'
         >>> MultiByteInt31(0x3fffffff).to_bytes()
         b'\\xff\\xff\\xff\\xff\\x03'
+        >>> MultiByteInt31(0x7fffffff).to_bytes()
+        b'\\xff\\xff\\xff\\xff\\x07'
         """
         value_a = self.value & 0x7F
         value_b = (self.value >> 7) & 0x7F
@@ -108,6 +110,10 @@ class MultiByteInt31(object):
         >>> mb = MultiByteInt31.parse(fp)
         >>> mb.value
         1337
+        >>> fp = BytesIO(b'\\x80\\x80\\x80\\x80\\x01')
+        >>> mb = MultiByteInt31.parse(fp)
+        >>> mb.value
+        268435456
         """
         v = 0
         # tmp = ''
